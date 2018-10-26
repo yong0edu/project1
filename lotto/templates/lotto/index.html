@@ -7,11 +7,22 @@
 
 <div class="page-header">
  <h1>My Lotto Page</h1>
+    {% if request.session.id %}
+    <h4>{{ request.session.id}}님 반갑습니다.</h4>
+    {% endif %}
 </div>
 {% for lotto in lottos %}
 <div class="container lotto">
- <h2>{{ lotto.name }}</h2>
- <p>{{ lotto.update_date }}</p>
+ <h2>
+     <a href = "{% url 'detail' %}?lotto_num={{ lotto.id }}">
+     {{ lotto.name }}
+     </a>
+ </h2>
+ <p>
+     <a href="{% url 'detail2' num=lotto.id %}">
+     {{ lotto.update_date }}
+     </a>
+ </p>
  <p>{{ lotto.lottos }}</p>
 </div>
 {% endfor %}
